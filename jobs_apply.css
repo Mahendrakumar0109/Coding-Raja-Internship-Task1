@@ -1,0 +1,250 @@
+
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+ height: 100vh;
+}
+
+.navbar {
+   
+}
+  .section-1{
+    padding: 5px;
+    
+  }
+  .nav-links {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
+  }
+  
+  .nav-links li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  .nav-links li a {
+    text-decoration: none;
+    
+  }
+  
+  .profile-img {
+    border-radius: 50%;
+    background-color: #fff;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+  }
+  
+  /* Badge */
+  .badge {
+   background-color: #4CAF50;
+    color: #fff;
+   border-radius: 80px;
+   padding: 5px;
+   
+  }
+  
+  /* Job Listings */
+  .job-listings {
+    margin-top: 5px;
+  }
+  
+  .job-cards {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .job-card {
+    background-color: #e6c7d8;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .job-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .company {
+    display: flex;
+    align-items: center;
+  }
+  
+  .company img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  .actions {
+    display: flex;
+    align-items: center;
+  }
+  
+  .save-button,
+  .apply-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .save-button:hover,
+  .apply-button:hover {
+    background-color: #555;
+  }
+  
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  .success-message {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .nav-links li {
+      display: block;
+      margin-bottom: 10px;
+    }
+  }
+  editor {
+    width: 50%;
+    float: left;
+    padding-right: 20px;
+  }
+  
+  .editor h2 {
+    margin-bottom: 20px;
+  }
+  
+  /* Additional content */
+  .additional-content {
+    width: 50%;
+    float: left;
+    padding-left: 20px;
+  }
+  
+  .additional-content h2 {
+    margin-bottom: 20px;
+  }  
+
+ul{
+    list-style: none;
+    
+    
+}
+.li-styling{
+ color: #4CAF50;
+ margin-top: 2px; 
+ padding: 5px;
+ border-radius: 20px; 
+ font-size: 12px;
+}
+
+.section-1{
+    background: rgb(253,253,253);
+    background: linear-gradient(90deg, rgba(253,253,253,1) 48%, rgb(146, 222, 180) 87%);
+    border-radius: 20px;
+}
+.job-card{
+    background: rgb(253,253,253);
+    background: linear-gradient(90deg, rgba(253,253,253,1) 48%, rgb(146, 222, 180) 87%);
+}
+
+.image-edit{
+   
+    width: 15%;
+}
+
+.image-edit1{
+    width: 80%;
+}
+
+/* Style the search container */
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 10px;
+    
+    border-radius: 5px;
+}
+
+/* Style the search input */
+#searchInput {
+    flex-grow: 1;
+    border: none;
+    padding: 8px;
+    font-size: 16px;
+}
+
+/* Style the search button */
+#searchButton {
+    background-color: #2196F3;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Style the search icon */
+#searchButton img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.section-2{
+    overflow: auto;
+    height: 200px;
+}

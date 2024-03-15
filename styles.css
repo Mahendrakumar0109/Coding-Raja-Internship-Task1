@@ -1,0 +1,40 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding:0;  
+}
+
+body{
+    height:100vh;
+    
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+   
+}
+
+
+.section-1{
+  color: rgb(237, 14, 226);
+ border-radius: 20px ;
+padding: 10px;
+  display: inline;
+  justify-content: center;
+  align-items: center;
+ 
+   
+}
+.section-2{
+  text-align: center; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(235, 235, 242);
+}
+
+.image-edit{
+padding: 20px;
+    width: 100%;
+}
+
+hr{
+  font-weight: bold;
+}

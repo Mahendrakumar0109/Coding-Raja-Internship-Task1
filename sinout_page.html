@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Resume Builder</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: rgb(238,174,202);
+background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .container {
+    display: flex;
+    max-width: 1200px;
+   
+    border-radius: 10px;
+    overflow: hidden;
+    
+  }
+  .left-side {
+    flex: 1;
+    padding: 30px;
+   
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .right-side {
+    flex: 1;
+    padding: 30px;
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 32px;
+    text-transform: uppercase;
+  }
+  .step-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 30px;
+  }
+  .step {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .step.active {
+    background-color: #4CAF50;
+    color: #fff;
+  }
+  .step:hover {
+    background-color: #e0e0e0;
+  }
+  form {
+    width: 100%;
+    max-width: 400px;
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="file"],
+  input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  input[type="submit"],
+  button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  input[type="submit"]:hover,
+  button:hover {
+    background-color: #45a049;
+  }
+  .image-upload {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .image-preview {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 10px;
+    background-color: #f0f0f0;
+  }
+  .image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .resume-preview {
+    width: 100%;
+    max-width: 300px;
+    margin-top: 20px;
+  }
+  .success-message {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    display: none;
+    margin-top: 20px;
+  }
+
+  .job-listings {
+    list-style-type: none;
+    padding: 0;
+  }
+  .job-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  .job-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .job-description {
+    color: #666;
+  }
+
+  .signout {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .signout:hover {
+    background-color: #45a049;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="left-side">
+    <h2>Online Resume Builder</h2>
+    <div class="step-bar">
+      <div class="step active" onclick="showStep(1)">Personal Details</div>
+      <div class="step" onclick="showStep(2)">Education</div>
+      <div class="step" onclick="showStep(3)">Languages</div>
+      <div class="step" onclick="showStep(4)">Experience</div>
+      <div class="step" onclick="showStep(5)">Resume Upload</div>
+      <div class="step" onclick="showStep(6)">Notice Period</div>
+    </div>
+  </div>
+  <div class="right-side">
+    <form id="resumeForm">
+      <!-- Step 1: Personal Details -->
+      <div class="step-content" id="step1">
+        <div class="form-group">
+          <label for="fullName">Full Name:</label>
+          <input type="text" id="fullName" name="fullName" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone:</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <button type="button" onclick="nextStep(1)">Next</button>
+      </div>
+
+      <!-- Step 2: Education -->
+      <div class="step-content" id="step2" style="display: none;">
+        <div class="form-group">
+          <label for="degree">Degree:</label>
+          <input type="text" id="degree" name="degree" required>
+        </div>
+        <div class="form-group">
+          <label for="university">University:</label>
+          <input type="text" id="university" name="university" required>
+        </div>
+        <!-- Add more fields for education details -->
+        <button type="button" onclick="nextStep(2)">Next</button>
+      </div>
+
+      <!-- Step 3: Languages -->
+      <div class="step-content" id="step3" style="display: none;">
+        <div class="form-group">
+          <label for="languages">Languages Known:</label>
+          <input type="text" id="languages" name="languages" required>
+        </div>
+        <!-- Add more fields for language details -->
+        <button type="button" onclick="nextStep(3)">Next</button>
+      </div>
+
+      <!-- Step 4: Experience -->
+      <div class="step-content" id="step4" style="display: none;">
+        <div class="form-group">
+          <label for="experience">Years of Experience:</label>
+          <input type="number" id="experience" name="experience" required>
+        </div>
+        <!-- Add more fields for experience details -->
+        <button type="button" onclick="nextStep(4)">Next</button>
+      </div>
+
+      <!-- Step 5: Resume Upload -->
+      <div class="step-content" id="step5" style="display: none;">
+        <div class="form-group image-upload">
+          <label for="profilePic">Profile Picture:</label>
+          <div class="image-preview" id="profilePicPreview"></div>
+          <input type="file" id="profilePic" name="profilePic" accept="image/*" onchange="previewImage(this)">
+        </div>
+        <div class="form-group image-upload">
+          <label for="resume">Resume Upload:</label>
+          <input type="file" id="resume" name="resume" accept=".pdf, .doc, .docx" required>
+          <div class="resume-preview" id="resumePreview"></div>
+        </div>
+        <button type="button" onclick="nextStep(5)">Next</button>
+      </div>
+
+      <!-- Step 6: Notice Period -->
+      <div class="step-content" id="step6" style="display: none;">
+        <div class="form-group">
+          <label for="noticePeriod">Notice Period (in days):</label>
+          <input type="number" id="noticePeriod" name="noticePeriod" required>
+        </div>
+        <!-- Add more fields for notice period details -->
+        <button type="button" onclick="submitForm()">Submit</button>
+      </div>
+    </form>
+
+    <div class="user-status">
+      <h3>User Status</h3>
+      <div class="progress-bar">
+        <div class="progress" id="progress">0%</div>
+      </div>
+      <div class="suggestions">
+        <h4>Suggestions:</h4>
+        <ul>
+          <li>Customize your resume to match job descriptions.</li>
+          <li>Highlight relevant skills and experiences.</li>
+          <li>Ensure your contact information is up to date.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="success-message" id="successMessage">
+  Your profile has been submitted successfully! <br> <br>
+  <button onclick="goToJobApply()">Go to Job Apply</button>
+</div>
+
+<button class="signout" onclick="signOut()">Sign Out</button>
+
+<script>
+  var currentStep = 0;
+  var totalSteps = 6;
+
+  function showStep(step) {
+    var steps = document.querySelectorAll('.step-content');
+    steps.forEach((stepContent, index) => {
+      if (index + 1 === step) {
+        stepContent.style.display = 'block';
+      } else {
+        stepContent.style.display = 'none';
+      }
+    });
+    updateStepBar(step);
+    updateProgressBar(step);
+  }
+
+  function updateStepBar(step) {
+    var steps = document.querySelectorAll('.step');
+    steps.forEach((stepItem, index) => {
+      if (index + 1 === step) {
+        stepItem.classList.add('active');
+      } else {
+        stepItem.classList.remove('active');
+      }
+    });
+  }
+
+  function updateProgressBar(step) {
+    var progress = (step / totalSteps) * 100;
+    var progressBar = document.getElementById('progress');
+    progressBar.textContent = progress + '%';
+  }
+
+  function nextStep(currentStep) {
+    var inputFields = document.querySelectorAll('.step-content.active input[required]');
+    var isValid = true;
+    inputFields.forEach(field => {
+      if (!field.value.trim()) {
+        isValid = false;
+        field.classList.add('invalid');
+      } else {
+        field.classList.remove('invalid');
+      }
+    });
+
+    if (isValid) {
+      showStep(currentStep + 1);
+    }
+  }
+
+  function previewImage(input) {
+    var preview = document.getElementById('profilePicPreview');
+    while (preview.firstChild) {
+      preview.removeChild(preview.firstChild);
+    }
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var image = document.createElement('img');
+        image.src = e.target.result;
+        preview.appendChild(image);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function submitForm() {
+    var form = document.getElementById('resumeForm');
+    var formData = new FormData(form);
+    // Simulate form submission, replace with actual AJAX request
+    setTimeout(function() {
+      showSuccessMessage();
+    }, 1000);
+  }
+
+  function showSuccessMessage() {
+    var successMessage = document.getElementById('successMessage');
+    successMessage.style.display = 'block';
+  }
+
+  function goToJobApply() {
+    window.location.href = 'job_apply.html';
+  }
+
+  function signOut() {
+    alert('Signing out...');
+    window.location.href = 'index.html'; // Replace 'index.html' with your home page URL
+  }
+</script>
+
+</body>
+</html>

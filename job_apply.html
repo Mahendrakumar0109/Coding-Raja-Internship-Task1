@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Listings</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="jobs_apply.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar p-2 mb-5 fixed-top">
+      <div class="container">
+        <ul class="nav-links">
+          <img
+            src="assets/jobsearchcom-high-resolution-logo-transparent.png"
+            alt=""
+            class="image-edit"
+          />
+          <li><a href="#">Jobs</a></li>
+          <li><a href="#">Companies</a></li>
+          <li><a href="#">Services</a></li>
+          <li class="badge" id="badge"><small>appiled</small> 0</li>
+          <!-- Example: Shows number of notifications -->
+          <li class="profile-img">profile</li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container-fluid p-5 mt-5">
+      <div class="row section-1 p-2">
+        <div class="col-md-3">
+          <div class="d-flex">
+            <div>
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV1PlW7ZUTkQVhGuuaxELI5vzh8McIlGhLxcwxcAkXSPTuuSCvlvZ0_vVmq8t_Ev3dxS8&usqp=CAU"
+                alt=""
+                class="img-2"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div>
+            <ul class="mt-4">
+              <li class="li-styling">
+                <i class="bi bi-tencent-qq"></i>Intuitive user interface for
+                easy resume creation.
+              </li>
+              <li class="li-styling">
+                <i class="bi bi-tencent-qq"></i>Extensive customization options
+                for unique resumes.
+              </li>
+              <li class="li-styling">
+                <i class="bi bi-tencent-qq"></i>Content suggestions for each
+                resume section.
+              </li>
+              <li class="li-styling">
+                <i class="bi bi-tencent-qq"></i>Integration with job portals for
+                streamlined applications.
+              </li>
+              <li class="li-styling">
+                <i class="bi bi-tencent-qq"></i>Integration with job portals for
+                streamlined applications.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-5 mt-5">
+          <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search jobs..." />
+            <button id="searchButton">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid mb-5">
+      <div class="row main-section-1">
+        <div class="col-md-4">
+          <img
+            src="https://media.istockphoto.com/id/1409346798/vector/online-web-search-of-data-information-internet-content-and-job-with-tiny-people.jpg?s=612x612&w=0&k=20&c=z2ilcf1GCSkVBFNZSj4K07K77RRxdKyRGYTUMPptb-8="
+            alt=""
+            class="image-edit1"
+          />
+        </div>
+        <div class="col-md-8 section-2">
+          <div class="job-cards" id="jobCards">
+            <!-- Job cards will be dynamically added here -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main Content -->
+
+    <!-- Modal for Successful Application -->
+    <div class="modal" id="jobDetailsModal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <div class="success-message">You have successfully applied!</div>
+        <div class="job-details">
+          <!-- Job details will be displayed here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer fixed-bottom">
+      <div class="container">
+        <p>&copy; 2024 Your Company. All Rights Reserved.</p>
+      </div>
+    </footer>
+    <script>
+      const jobCardsContainer = document.getElementById("jobCards");
+      const searchInput = document.getElementById("searchInput");
+      const searchButton = document.getElementById("searchButton");
+
+      // Sample job data (replace with your actual data)
+      const jobs = [
+        {
+          title: "Fullstack Developer",
+          description: "Lorem ipsum dolor sit amet...",
+        },
+        {
+          title: "Backend Developer",
+          description: "Lorem ipsum dolor sit amet...",
+        },
+        {
+          title: "Software Engineer",
+          description: "Lorem ipsum dolor sit amet...",
+        },
+        {
+          title: "Devops Enginner",
+          description: "Lorem ipsum dolor sit amet...",
+        },
+        {
+          title: "Frontend Developer",
+          description: "Lorem ipsum dolor sit amet...",
+        },
+        {
+          title: "Data Analyst",
+          description: "Vivamus vel justo nec urna aliquet tincidunt...",
+        },
+        // Add more job objects...
+      ];
+
+      // Display all jobs initially
+      displayJobs(jobs);
+
+      searchButton.addEventListener("click", performSearch);
+
+      function performSearch() {
+        const query = searchInput.value.toLowerCase();
+        const filteredJobs = jobs.filter(
+          (job) =>
+            job.title.toLowerCase().includes(query) ||
+            job.description.toLowerCase().includes(query)
+        );
+
+        displayJobs(filteredJobs);
+      }
+
+      function displayJobs(jobs) {
+        jobCardsContainer.innerHTML = ""; // Clear existing job cards
+
+        jobs.forEach((job) => {
+          const card = document.createElement("div");
+          card.classList.add("job-card");
+          card.innerHTML = `
+            <h2>${job.title}</h2>
+            <p>${job.description}</p>
+            <div class="buttons">
+                <button class="save-button">Save</button>
+                <button class="apply-button">Apply</button>
+            </div>
+        `;
+          jobCardsContainer.appendChild(card);
+        });
+      }
+
+      // Functionality for applying to a job
+      document.querySelectorAll(".apply-button").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.getElementById("jobDetailsModal").style.display = "block";
+        });
+      });
+
+      // Functionality for closing the modal
+      document.querySelector(".close-button").addEventListener("click", () => {
+        document.getElementById("jobDetailsModal").style.display = "none";
+      });
+      // Initialize counters for applied and selected jobs
+      let appliedJobsCount = 0;
+      let selectedJobsCount = 0;
+
+      // Functionality for applying to a job
+      document.querySelectorAll(".apply-button").forEach((button) => {
+        button.addEventListener("click", () => {
+          // Increment the applied jobs count
+          appliedJobsCount++;
+          updateBadge();
+          document.getElementById("jobDetailsModal").style.display = "block";
+        });
+      });
+
+      // Functionality for closing the modal
+      document.querySelector(".close-button").addEventListener("click", () => {
+        document.getElementById("jobDetailsModal").style.display = "none";
+      });
+
+      // Function to update the badge
+      function updateBadge() {
+        const badge = document.getElementById("badge");
+        badge.textContent = appliedJobsCount;
+        badge.style.display = "inline";
+      }
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>
